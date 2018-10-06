@@ -1,0 +1,76 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes agregar un nuevo rol !</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar rol</li>
+    <li><a href="">crear</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>Agregar rol</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formRol="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del rol</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nombre">Nombre<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name" #role="ngModel" name="name" class="form-control" [(ngModel)]="rol.name" placeholder="Digite el nombre del rol" value="" required>
+            <span *ngIf="!rol.valid && rol.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="is_edit == true">
+          <label class="col-md-4 control-label" for="nombre">Estado<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+
+                  <label class="radio-inline" for="" >
+                          <input class="radio-inline" type="radio" #estado="ngModel" id="estado" name="estado" value="true" [(ngModel)]="rol.status"> Activo
+                  </label>
+                  <label class="radio-inline" for="" >
+                          <input class="radio-inline" type="radio" #estado="ngModel" id="estado" name="estado" value="false" [(ngModel)]="rol.status"> Inactivo
+                  </label>
+
+
+            <span *ngIf="!estado.valid && estado.touched"><p style="color:#b61922;">El nombre del tema es obligatorio.</p></span>
+          </div>
+        </div>
+
+
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formRol.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

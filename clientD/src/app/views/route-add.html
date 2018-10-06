@@ -1,0 +1,109 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-road"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas rutas al sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar ruta</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formRoute="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos de la ruta</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Titulo<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name" #name="ngModel" name="name" class="form-control" [(ngModel)]="route.name" placeholder="Digite el nombre de la localidad" value="" required>
+            <span *ngIf="!name.valid && name.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="driverCar">Prestador<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #driverCar="ngModel" name="driverCar" id="driverCar" [(ngModel)]="route.driverCar" required>
+                <option value="" disabled>Selecione el prestador</option>
+                <option *ngFor="let driverCar of driverCars" value="{{driverCar._id}}">{{driverCar.driver.user.name}} {{driverCar.driver.user.surname}} | {{driverCar.car.placa}} | {{driverCar.car.capacity}}</option>
+            </select>
+            <span *ngIf="!driverCar.valid && driverCar.touched"><p style="color:#b61922;">El prestador es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="rate">Tarifa<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #rate="ngModel" name="rate" id="rate" [(ngModel)]="route.rate" required>
+                <option value="" disabled>Selecione la tarifa</option>
+                <option *ngFor="let rate of rates" value="{{rate._id}}">${{rate.precio}} | {{rate.origen.name}} - {{rate.destino.name}}</option>
+            </select>
+            <span *ngIf="!driverCar.valid && driverCar.touched"><p style="color:#b61922;">El prestador es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="template">Planilla<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #template="ngModel" name="template" id="template" [(ngModel)]="route.template" required>
+                <option value="" disabled>Selecione la tarifa</option>
+                <option *ngFor="let template of templates" value="{{template._id}}">{{template.location_start}} - {{template.location_end}}<span *ngIf="template.canLocalidades > 1"> | Tiene localidad adicional</span></option>
+            </select>
+            <span *ngIf="!driverCar.valid && driverCar.touched"><p style="color:#b61922;">El prestador es obligatorio.</p></span>
+          </div>
+        </div>
+        <!--<div class="form-group">
+          <label class="col-md-4 control-label" for="locationAdd">Localidad adicional<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+
+                  <label class="radio-inline" for="" >
+                          <input class="radio-inline" type="radio" #locationAdd="ngModel" id="locationAdd" name="locationAdd" value="true" [(ngModel)]="route.locationAdd"> Si
+                  </label>
+                  <label class="radio-inline" for="" >
+                          <input class="radio-inline" type="radio" #locationAdd="ngModel" id="locationAdd" name="locationAdd" value="false" [(ngModel)]="route.locationAdd"> No
+                  </label>
+
+
+            <span *ngIf="!locationAdd.valid && locationAdd.touched"><p style="color:#b61922;">Saber sí tiene localidad adicional es obligtorio.</p></span>
+          </div>
+        </div>-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date">Fecha</label>
+          <div class="input-group col-md-6">
+            <input type="date" id="date" #date="ngModel" name="date" class="form-control" [(ngModel)]="route.date" data-date-format="yyyy-mm-dd" placeholder="aaaa/mm/dd">
+            <span *ngIf="!date.valid && date.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formRoute.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

@@ -1,0 +1,158 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-road"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas planillas al sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar planilla</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+
+    <form id="form-validation" #formTemplate="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos de la ciudad</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="title">Titulo<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="title" #title="ngModel" name="title" class="form-control" [(ngModel)]="template.title" placeholder="Digite el titulo" value="" required>
+            <span *ngIf="!title.valid && title.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_start">Fecha Inicio</label>
+          <div class="input-group col-md-6">
+            <input type="date" id="date_start" #date_start="ngModel" name="date_start" class="form-control" [(ngModel)]="template.date_start" data-date-format="yyyy-mm-dd" placeholder="aaaa/mm/dd">
+            <span *ngIf="!date_start.valid && date_start.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_end">Fecha Final</label>
+          <div class="input-group col-md-6">
+            <input type="date" id="date_end" #date_end="ngModel" name="date_end" class="form-control" [(ngModel)]="template.date_end" data-date-format="yyyy-mm-dd" placeholder="aaaa/mm/dd">
+            <span *ngIf="!date_end.valid && date_end.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cost_center">Tipo dirección destino<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #cost_center="ngModel" name="cost_center" id="type_address_start" [(ngModel)]="template.cost_center" required>
+                <option *ngFor="let cc of costCenters" value="{{cc._id}}">{{cc.name}}</option>
+                <option value="" disabled>Selecione el centro de costo</option>
+            </select>
+            <span *ngIf="!cost_center.valid && cost_center.touched"><p style="color:#b61922;">El centro de costos es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">Ciudad origen<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #city="ngModel" name="city" id="city" [(ngModel)]="template.city" (ngModelChange)="cityOrigen($event)" required>
+                <option value="" disabled>Selecione la tipo origen</option>
+                <option *ngFor="let city of cities" value="{{city.name}}" (click)="cityOrigen(city.name)">{{city.name}}</option>
+            </select>
+            <span *ngIf="!type_address_start.valid && type_address_start.touched"><p style="color:#b61922;">El tipo es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="type_address_start">Tipo dirección destino<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #type_address_start="ngModel" name="type_address_start" id="type_address_start" [(ngModel)]="template.type_address_start" required>
+                <option value="" disabled>Selecione la tipo origen</option>
+                <option value="unico">Unico Orgien</option>
+                <option value="varios">Varios Origenes</option>
+            </select>
+            <span *ngIf="!type_address_start.valid && type_address_start.touched"><p style="color:#b61922;">La ciuada de origen es obligatoria.</p></span>
+          </div>
+        </div>
+        <br>
+
+        <div class="" *ngIf="template.type_address_start == 'unico'">
+          <div class="input-groupform-group">
+            <label class="col-md-4 control-label" for="address_start">Dirección<span class="text-danger">*</span></label>
+            <div class="col-md-6 input-group">
+              <input type="text" id="address_starte" #address_start="ngModel" name="address_start" class="form-control" [(ngModel)]="template.address_start" placeholder="Digite el titulo" value="" required><span class="input-group-addon" (click)="searchLocation(template.city, template.address_start)"><i class="fa fa-binoculars"></i></span>
+              <span *ngIf="!address_start.valid && address_start.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+            </div>
+          </div>
+        </div>
+        <div class="" *ngIf="template.type_address_start == 'varios'">
+
+            <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+            <!--<button type="button" name="button" (click)="final()">final</button>-->
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city_end">Ciudad Destino<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #city_end="ngModel" name="city_end" id="city_end" [(ngModel)]="template.city_end" (ngModelChange)="cityEnd($event)" required>
+                <option value="" disabled>Selecione la tipo origen</option>
+                <option *ngFor="let city_end of citiesEnd" value="{{city_end.name}}" (click)="cityEnd(city_end.name)">{{city_end.name}}</option>
+            </select>
+            <span *ngIf="!city_end.valid && city_end.touched"><p style="color:#b61922;">La ciudad de destino es obligatoria.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="type_address_end">Tipo dirección destino<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <select class="form-control" #type_address_end="ngModel" name="type_address_end" id="type_address_end" [(ngModel)]="template.type_address_end" required>
+                <option value="" disabled>Selecione la tipo origen</option>
+                <option value="unico_end">Unico Orgien</option>
+                <option value="varios_end">Varios Origenes</option>
+            </select>
+            <span *ngIf="!type_address_start.valid && type_address_start.touched"><p style="color:#b61922;">El tipo es obligatorio.</p></span>
+          </div>
+        </div>
+        <br>
+        <div class="" *ngIf="template.type_address_end == 'unico_end'">
+          <div class="input-groupform-group">
+            <label class="col-md-4 control-label" for="address_start">Dirección<span class="text-danger">*</span></label>
+            <div class="col-md-6 input-group">
+              <input type="text" id="address_end" #address_end="ngModel" name="address_end" class="form-control" [(ngModel)]="template.address_end" placeholder="Digite el titulo" value="" required><span class="input-group-addon" (click)="searchLocation_end(template.city_end, template.address_end)"><i class="fa fa-binoculars"></i></span>
+              <span *ngIf="!address_end.valid && address_end.touched"><p style="color:#b61922;">La dirección es bligatoria.</p></span>
+            </div>
+          </div>
+        </div>
+        <div class="" *ngIf="template.type_address_end == 'varios_end'">
+
+            <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+            <!--<button type="button" name="button" (click)="final()">final</button>-->
+        </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formTemplate.form.valid" (click)="final()"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

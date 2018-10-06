@@ -1,0 +1,248 @@
+<div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+<!-- Main Sidebar -->
+<div id="sidebar">
+  <!-- Wrapper for scrolling functionality -->
+  <div id="sidebar-scroll">
+    <!-- Sidebar Content -->
+    <div class="sidebar-content">
+      <!-- Brand -->
+      <a href="inicio.html" class="sidebar-brand">
+        <i class="fa fa-bus"></i><span class="sidebar-nav-mini-hide"><strong>Celuvans</strong></span>
+      </a>
+      <!-- END Brand -->
+
+      <!-- User Info -->
+      <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+        <div class="sidebar-user-avatar">
+          <a href="#">
+            <div class="" *ngIf="identity.image == 'null'">
+              <img src="assets/img/placeholders/avatars/avatar2.jpg" alt="avatar">
+            </div>
+            <div class="" *ngIf="identity.image != 'null'">
+              <img id="image-logged" src="{{url + 'get-image-user/' + identity.image }}" alt="avatar">
+            </div>
+          </a>
+        </div>
+        <div class="sidebar-user-name" id="identity_name">{{identity.name}} {{identity.surname}}</div>
+        <div class="sidebar-user-links">
+          <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
+          <a href="javascript:void(0)" [routerLink]="['/mis-datos']" class="enable-tooltip" data-placement="bottom" title="Configuración" ><i class="gi gi-user"></i></a>
+          <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
+          <a href="index.html" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión " (click)="logout()"><i class="gi gi-exit"></i></a>
+        </div>
+      </div>
+      <!-- END User Info -->
+
+      <!-- Theme Colors -->
+      <!-- Change Color Theme functionality can be found in js/app.js - templateOptions() -->
+
+            <!-- END Theme Colors -->
+
+            <!-- Sidebar Navigation SuperAmin -->
+            <ul class="sidebar-nav" *ngIf="identity && identity.rol.name == 'Super Administrador'">
+
+
+              <a href="#" class="sidebar-nav-menu"><span class="sidebar-nav-mini-hide">MENU DE NAVEGACIÓN</span></a>
+
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-user-secret sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Roles</span></a>
+              <ul>
+                <li><a [routerLink]="['/roles']"><i class="fa fa-circle-o"></i> Lista Roles</a></li>
+                <li><a [routerLink]="['/crear-rol']"><i class="fa fa-circle-o"></i> Crear Rol</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Usuarios</span></a>
+              <ul>
+                <li><a [routerLink]="['/usuarios']"><i class="fa fa-circle-o"></i> Lista Usuarios</a></li>
+                <li><a [routerLink]="['/crear-usuario']"><i class="fa fa-circle-o"></i> Crear Usuario</a></li>
+                <li><a [routerLink]="['/empleados-admin']"><i class="fa fa-circle-o"></i> Lista Empleado</a></li>
+                <li><a [routerLink]="['/conductores-admin']"><i class="fa fa-circle-o"></i> Lista Conductores</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-map-marker sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Ciudades</span></a>
+              <ul>
+                <li><a [routerLink]="['/ciudades']"><i class="fa fa-circle-o"></i> Lista ciudades</a></li>
+                <li><a [routerLink]="['/crear-ciudad']"><i class="fa fa-circle-o"></i> Crear ciudad</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-location-arrow sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Localidad</span></a>
+              <ul>
+                <li><a [routerLink]="['/localidades']"><i class="fa fa-circle-o"></i> Lista localidades</a></li>
+                <li><a [routerLink]="['/crear-localidad']"><i class="fa fa-circle-o"></i> Crear localidad</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-building sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Centros de costos</span></a>
+              <ul>
+                <li><a [routerLink]="['/centros']"><i class="fa fa-circle-o"></i> Lista localidades</a></li>
+                <li><a [routerLink]="['/crear-centro']"><i class="fa fa-circle-o"></i> Crear localidad</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-bus sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Vehículos</span></a>
+              <ul>
+                <li><a [routerLink]="['/vehiculos']"><i class="fa fa-circle-o"></i> Lista vehículos</a></li>
+                <li><a [routerLink]="['/crear-vehiculo']"><i class="fa fa-circle-o"></i> Crear vehículo</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-book sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tarifas</span></a>
+              <ul>
+                <li><a [routerLink]="['/tarifas']"><i class="fa fa-circle-o"></i> Lista tarifas</a></li>
+                <li><a [routerLink]="['/crear-tarifa']"><i class="fa fa-circle-o"></i> Crear tarifa</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-credit-card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Arls</span></a>
+              <ul>
+                <li><a [routerLink]="['/arls']"><i class="fa fa-circle-o"></i> Lista arl</a></li>
+                <li><a [routerLink]="['/crear-arl']"><i class="fa fa-circle-o"></i> Crear arl</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Eps</span></a>
+              <ul>
+                <li><a [routerLink]="['/eps']"><i class="fa fa-circle-o"></i> Lista eps</a></li>
+                <li><a [routerLink]="['/crear-eps']"><i class="fa fa-circle-o"></i> Crear eps</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-road sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Ruta</span></a>
+              <ul>
+                <li><a [routerLink]="['/prestadores']"><i class="fa fa-circle-o"></i> Prestador del servicio</a></li>
+                <li><a [routerLink]="['/planillas']"><i class="fa fa-circle-o"></i> Planillas</a></li>
+                <li><a [routerLink]="['/crear-planilla']"><i class="fa fa-circle-o"></i> Crear planilla</a></li>
+                <li><a [routerLink]="['/rutas']"><i class="fa fa-circle-o"></i> Rutas</a></li>
+                <li><a [routerLink]="['/rutas-programadas']"><i class="fa fa-circle-o"></i> Rutas programadas</a></li>
+                <li><a [routerLink]="['/rutas-finalizadas']"><i class="fa fa-circle-o"></i> Rutas finalizadas</a></li>
+                <li><a [routerLink]="['/crear-ruta']"><i class="fa fa-circle-o"></i> Crear ruta</a></li>
+              </ul>
+              <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-dollar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Factura</span></a>
+              <ul>
+                <li><a [routerLink]="['/ruta-factura']"><i class="fa fa-circle-o"></i> Ruta factura</a></li>
+                <li><a [routerLink]="['/precio-localidad-adicionales']"><i class="fa fa-circle-o"></i> Valor localidad adicional</a></li>
+                <li><a [routerLink]="['/crear-precio-localidad-adicional']"><i class="fa fa-circle-o"></i> Crear localidad adicional</a></li>
+              </ul>
+
+           </ul>
+           <!-- END Sidebar Navigation SuperAdmin-->
+           <!-- Sidebar Navigation ClientAdmin -->
+           <ul class="sidebar-nav" *ngIf="identity && identity.rol.name == 'Cliente Admin'">
+
+
+             <a href="#" class="sidebar-nav-menu"><span class="sidebar-nav-mini-hide">MENU DE NAVEGACIÓN</span></a>
+
+
+             <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Empleados</span></a>
+             <ul>
+               <li><a [routerLink]="['/empleados']"><i class="fa fa-circle-o"></i> Lista Empleado</a></li>
+               <li><a [routerLink]="['/crear-empleado']"><i class="fa fa-circle-o"></i> Crear Empleado</a></li>
+             </ul>
+             <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-road sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Ruta</span></a>
+             <ul>
+               <li><a [routerLink]="['/rutas-programadas']"><i class="fa fa-circle-o"></i> Rutas programadas</a></li>
+               <li><a [routerLink]="['/rutas-finalizadas']"><i class="fa fa-circle-o"></i> Rutas finalizadas</a></li>
+
+             </ul>
+
+          </ul>
+          <!-- END Sidebar Navigation ClientAdmin-->
+          <!-- Sidebar Navigation Coodinador -->
+          <ul class="sidebar-nav" *ngIf="identity && identity.rol.name == 'Coordinador'">
+
+
+            <a href="#" class="sidebar-nav-menu"><span class="sidebar-nav-mini-hide">MENU DE NAVEGACIÓN</span></a>
+
+
+            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Empleados</span></a>
+            <ul>
+              <li><a [routerLink]="['/conductores']"><i class="fa fa-circle-o"></i> Lista Conductores</a></li>
+              <li><a [routerLink]="['/crear-conductor']"><i class="fa fa-circle-o"></i> Crear Conductores</a></li>
+            </ul>
+            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-road sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Ruta</span></a>
+            <ul>
+              <li><a [routerLink]="['/prestadores']"><i class="fa fa-circle-o"></i> Prestador del servicio</a></li>
+              <li><a [routerLink]="['/planillas']"><i class="fa fa-circle-o"></i> Planillas</a></li>
+              <li><a [routerLink]="['/crear-planilla']"><i class="fa fa-circle-o"></i> Crear planilla</a></li>
+              <li><a [routerLink]="['/rutas']"><i class="fa fa-circle-o"></i> Rutas</a></li>
+              <li><a [routerLink]="['/rutas-programadas']"><i class="fa fa-circle-o"></i> Rutas programadas</a></li>
+              <li><a [routerLink]="['/rutas-finalizadas']"><i class="fa fa-circle-o"></i> Rutas finalizadas</a></li>
+              <li><a [routerLink]="['/crear-ruta']"><i class="fa fa-circle-o"></i> Crear ruta</a></li>
+            </ul>
+
+         </ul>
+         <!-- END Sidebar Navigation Coodinador-->
+         <!-- Sidebar Navigation Facturador -->
+         <ul class="sidebar-nav" *ngIf="identity && identity.rol.name == 'Facturador'">
+
+
+           <a href="#" class="sidebar-nav-menu"><span class="sidebar-nav-mini-hide">MENU DE NAVEGACIÓN</span></a>
+
+           <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-road sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Ruta</span></a>
+           <ul>
+             <li><a [routerLink]="['/rutas-programadas']"><i class="fa fa-circle-o"></i> Rutas programadas</a></li>
+             <li><a [routerLink]="['/rutas-finalizadas']"><i class="fa fa-circle-o"></i> Rutas finalizadas</a></li>
+
+           </ul>
+           <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-dollar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Factura</span></a>
+           <ul>
+             <li><a [routerLink]="['/ruta-factura']"><i class="fa fa-circle-o"></i> Ruta factura</a></li>
+           </ul>
+
+        </ul>
+        <!-- END Sidebar Navigation Facturador-->
+
+           <!-- Sidebar Notifications -->
+
+           <!-- END Sidebar Notifications -->
+         </div>
+         <!-- END Sidebar Content -->
+       </div>
+       <!-- END Wrapper for scrolling functionality -->
+     </div>
+     <!-- END Main Sidebar -->
+
+     <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <!-- Modal Header -->
+                 <div class="modal-header text-center">
+                     <h2 class="modal-title"><i class="fa fa-pencil"></i> Configuración</h2>
+                 </div>
+                 <!-- END Modal Header -->
+
+                 <!-- Modal Body -->
+                 <div class="modal-body">
+                   <div *ngIf="alertMessage">
+                       <div class="alert alert-info">
+                         {{alertMessage}}
+                       </div>
+                   </div>
+                     <form #userUpdateForm = "ngForm" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+                         <fieldset>
+                             <legend>Información</legend>
+                             <div class="form-group">
+                                 <label class="col-md-4 control-label">Nombre</label>
+                                 <div class="col-md-8">
+                                     <p class="form-control-static">{{identity.name}} {{identity.surname}}</p>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <label class="col-md-4 control-label" for="user-settings-email">Email</label>
+                                 <div class="col-md-8">
+                                     <p class="form-control-static">{{identity.email}}</p>
+                                 </div>
+                             </div>
+                         </fieldset>
+                         <fieldset>
+                             <legend>Cambiar Password</legend>
+                             <div class="form-group">
+                                 <label class="col-md-4 control-label" for="user-settings-password">Nuevo Password</label>
+                                 <div class="col-md-8">
+                                     <input type="password" #password = "ngModel" id="user-settings-password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Digita tu nuevo password">
+                                 </div>
+                                 <span *ngIf="!password.valid && password.touched">El password es obligatorio</span>
+                             </div>
+                             <!--<div class="form-group">
+                                 <label class="col-md-4 control-label" for="user-settings-repassword">Confirmar Nuevo Password</label>
+                                 <div class="col-md-8">
+                                     <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="Confirma tu nuevo password!">
+                                 </div>
+                             </div>-->
+                         </fieldset>
+                         <div class="form-group form-actions">
+                             <div class="col-xs-12 text-right">
+                                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cerrar</button>
+                                 <button type="submit" class="btn btn-sm btn-primary" [disabled]="!userUpdateForm.valid" >Guardar cambios</button>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+                 <!-- END Modal Body -->
+             </div>
+         </div>
+     </div>

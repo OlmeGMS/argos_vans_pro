@@ -1,0 +1,100 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-road"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas planillas al sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar planilla</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+
+    <form id="form-validation" #formTemplate="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos de la ciudad</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="title">Titulo<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="title" #title="ngModel" name="title" class="form-control" [(ngModel)]="template.title" placeholder="Digite el titulo" value="" readonly>
+            <span *ngIf="!title.valid && title.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_start">Fecha Inicio</label>
+          <div class="input-group col-md-6">
+            <input type="date" id="date_start" #date_start="ngModel" name="date_start" class="form-control" [(ngModel)]="template.date_start" data-date-format="yyyy-mm-dd" placeholder="aaaa/mm/dd" readonly>
+            <span *ngIf="!date_start.valid && date_start.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_end">Fecha Final</label>
+          <div class="input-group col-md-6">
+            <input type="date" id="date_end" #date_end="ngModel" name="date_end" class="form-control" [(ngModel)]="template.date_end" data-date-format="yyyy-mm-dd" placeholder="aaaa/mm/dd" readonly>
+            <span *ngIf="!date_end.valid && date_end.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+        <div class="table-responsive remove-margin-bottom">
+          <table id="table-usuarios-app" class="table table-vcenter table-condensed table-bordered">
+              <thead>
+                  <tr>
+                      <th class="text-center">Cédula</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Apellido</th>
+                      <th class="text-center">Teléfono</th>
+                      <th class="text-center">Dirección</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let template of template.employee; index as i">
+                      <td class="text-center">{{template.dni}}</td>
+                      <td class="text-center">{{template.name}}</td>
+                      <td class="text-center">{{template.surname}}</td>
+                      <td class="text-center">{{template.phone}}</td>
+                      <td class="text-center">{{template.address}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <br>
+
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success"  ><i class="fa fa-arrow-right"></i> Regresar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

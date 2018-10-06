@@ -1,0 +1,74 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-building"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas ciudades al sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar centro de costo</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formCost="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del centro de costo</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Nombre<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name" #name="ngModel" name="name" class="form-control" [(ngModel)]="costCenter.name" placeholder="Digite el nombre de la ciudad" value="" required>
+            <span *ngIf="!name.valid && name.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Dirección<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" id="address" #address="ngModel" name="address" class="form-control" [(ngModel)]="costCenter.address" placeholder="Calle 1c Bis #18-34" value="" required>
+              <span *ngIf="!address.valid && address.touched"><p style="color:#b61922;">El ceco es obligatorio.</p></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="ceco">Ceco<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" id="ceco" #ceco="ngModel" name="ceco" class="form-control" [(ngModel)]="costCenter.ceco" placeholder="Digite el ceco" value="" required>
+              <span *ngIf="!ceco.valid && ceco.touched"><p style="color:#b61922;">El ceco es obligatorio.</p></span>
+            </div>
+          </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formCost.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

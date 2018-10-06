@@ -1,0 +1,100 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+  <!-- Blank Header -->
+  <div class="content-header">
+    <div class="header-section">
+      <h1>
+            <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes ver la información del conductor !</small>
+        </h1>
+    </div>
+  </div>
+  <ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar usuario</li>
+    <li><a href="">{{titulo}}</a></li>
+  </ul>
+  <!-- END Blank Header -->
+
+  <!-- Example Block -->
+  <div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+      <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formUser="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del usuario</legend>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nombre">Nombre<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name"  name="name" class="form-control"  placeholder="Digite el nombre " value="{{driver.user.name}}" readonly>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="surname">Apellido<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="surname"  name="surname" class="form-control"  placeholder="Digite el apellido" value="{{driver.user.surname}}" readonly>
+
+
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dni">Documento de identidad<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="dni"  name="dni" class="form-control"  placeholder="Digite el documento" value="{{driver.user.dni}}"  readonly>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="email" id="email"  name="email" class="form-control"  placeholder="Digite el email" value="{{driver.user.email}}" readonly>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="phone">Teléfono<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="phone"  name="phone" class="form-control"  placeholder="Digite el teléfono" value="{{driver.user.phone}}"  readonly>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="code">Arl<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="code" name="code" class="form-control" placeholder="Digite el codigo" value="{{driver.arl.name}}" readonly>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cost_center">Eps</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="cost_center"  name="cost_center"  placeholder="Seleccione el centro de costo" value="{{driver.eps.name}}" readonly>
+
+            </div>
+        </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formUser.form.valid"><i class="fa fa-arrow-right"></i> Regresar</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+  </div>
+  <!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

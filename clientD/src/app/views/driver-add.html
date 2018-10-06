@@ -1,0 +1,112 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevos coductores !</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar coductores</li>
+    <li><a href="">crear</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>Agregar conductor</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formUser="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del conductor</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nombre">Nombre<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name" #name="ngModel" name="name" class="form-control" [(ngModel)]="user.name" placeholder="Digite el nombre " value="" required>
+            <span *ngIf="!name.valid && name.touched"><p style="color:#b61922;">El nombre  es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="surname">Apellido<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="surname" #surname="ngModel" name="surname" class="form-control" [(ngModel)]="user.surname" placeholder="Digite el apellido" value="" required>
+            <span *ngIf="!surname.valid && surname.touched"><p style="color:#b61922;">El apellido es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dni">Documento de identidad<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="dni" #dni="ngModel" name="dni" class="form-control" [(ngModel)]="user.dni" placeholder="Digite el apellido" value="" required>
+            <span *ngIf="!dni.valid && dni.touched"><p style="color:#b61922;">El apellido es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="email" id="email" #email="ngModel" name="email" class="form-control" [(ngModel)]="user.email" placeholder="Digite el email" value="" required>
+            <span *ngIf="!email.valid && email.touched"><p style="color:#b61922;">El email es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Password<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="password" id="password" #password="ngModel" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Digite el password" value="" required>
+            <span *ngIf="!password.valid && password.touched"><p style="color:#b61922;">El password es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="phone">Teléfono<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="phone" #phone="ngModel" name="phone" class="form-control" [(ngModel)]="user.phone" placeholder="Digite el teléfono" value="" required>
+            <span *ngIf="!phone.valid && phone.touched"><p style="color:#b61922;">El teléfono es obligatorio.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="">Arl</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="arl" #arl="ngModel" name="arl" [(ngModel)]="driver.arl" placeholder="Seleccione el Arl" required>
+              <option value="" selected disabled>Seleccione la arl</option>
+              <option *ngFor="let arl of arls" value="{{arl._id}}">{{arl.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="">Eps</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="eps" #eps="ngModel" name="eps" [(ngModel)]="driver.eps" placeholder="Seleccione la eps" required>
+              <option value="" selected disabled>Seleccione la eps</option>
+              <option *ngFor="let eps of epss" value="{{eps._id}}">{{eps.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formUser.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

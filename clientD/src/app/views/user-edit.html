@@ -1,0 +1,93 @@
+<div class="" *ngIf="identity">
+  <!-- Blank Header -->
+  <div class="content-header">
+      <div class="header-section">
+          <h1>
+              <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes cambiar tú información!</small>
+          </h1>
+      </div>
+  </div>
+  <ul class="breadcrumb breadcrumb-top">
+      <li>Home</li>
+      <li>Gestionar usuario</li>
+      <li><a href="">{{titulo}}</a></li>
+  </ul>
+  <!-- END Blank Header -->
+
+  <!-- Example Block -->
+  <div class="block">
+      <!-- Example Title -->
+      <div class="block-title">
+          <h2>{{titulo}}</h2>
+      </div>
+      <!-- END Example Title -->
+
+      <!-- Example Content -->
+      <form id="form-validation"  #userUpdateForm="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+        <fieldset>
+          <legend><i class="fa fa-angle-right"></i> Datos del usuario</legend>
+          <div *ngIf="alertMessage">
+              <div class="alert alert-info">
+                {{alertMessage}}
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Nombre<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" #name="ngModel" id="name" name="name" class="form-control" [(ngModel)]="user.name" placeholder="Digite el nombre" required>
+            </div>
+            <span *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="surname">Apellido<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" #surname="ngModel" id="surname" name="surname" class="form-control" [(ngModel)]="user.surname" placeholder="Digite el apellido" value="" required>
+            </div>
+            <span *ngIf="!surname.valid && surname.touched">El apellido es obligatorio</span>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="dni">Documento<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" #dni="ngModel" id="dni" name="dni" class="form-control" [(ngModel)]="user.dni" placeholder="Digite el Nº de documento" required>
+            </div>
+            <span *ngIf="!dni.valid && dni.touched">El documento es obligatorio</span>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="email" #email="ngModel" id="email" name="email" class="form-control" [(ngModel)]="user.email" placeholder="Digite el email" required>
+            </div>
+            <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="phone">Teléfono<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="number" #phone="ngModel" id="phone" name="phone" class="form-control" [(ngModel)]="user.phone" placeholder="Digite el teléfono" required>
+            </div>
+            <span *ngIf="!phone.valid && phone.touched">EL teléfono es obligatorio</span>
+          </div>
+
+          <div class="" *ngIf="user.image && user.image != 'null'">
+            <img src="{{url + 'get-image-user/' + user.image}}" alt="" style=" width: 10%;margin-left: 36%;">
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="image">Subir foto<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="file" #photo="ngModel" id="image" name="image" class="form-control" [(ngModel)]="user.image" placeholder="Suba la foto ..." (change)="fileChangeEvent($event)">
+            </div>
+
+          </div>
+
+          <div class="form-group ">
+            <div class="col-md-8 col-md-offset-4">
+              <button href="" type="submit" class="btn btn-sm btn-success"><i class="fa fa-arrow-right"></i> Editar datos</button>
+              <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <!-- END Example Content -->
+  </div>
+  <!-- END Example Block -->
+</div>

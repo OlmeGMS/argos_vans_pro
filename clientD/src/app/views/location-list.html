@@ -1,0 +1,68 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+  <!-- Blank Header -->
+  <div class="content-header">
+      <div class="header-section">
+          <h1>
+              <i class="fa fa-building"></i>{{titulo}}<br><small>En esta sección pudes ver las localidades registradas!</small>
+          </h1>
+      </div>
+  </div>
+  <ul class="breadcrumb breadcrumb-top">
+      <li>Home</li>
+      <li>Ciudades</li>
+      <li><a href="">{{titulo}}</a></li>
+  </ul>
+  <!-- END Blank Header -->
+
+  <!-- Example Block -->
+  <div class="block">
+      <!-- Example Title -->
+      <div class="block-title">
+          <h2>{{titulo}}</h2> &nbsp;&nbsp;&nbsp;&nbsp;<a [routerLink]="['/crear-localidad']"  id="btn-search-user"><i class="fa fa-plus"></i>Agregar nueva localidad</a>
+      </div>
+      <!-- END Example Title -->
+        <div class="table-responsive remove-margin-bottom">
+          <table id="table-usuarios-app" class="table table-vcenter table-condensed table-bordered">
+              <thead>
+                  <tr>
+                      <th class="text-center">ID</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Ciudad</th>
+                      <th class="text-center">Acción</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let location of locations">
+                      <td class="text-center">{{location._id}}</td>
+                      <td class="text-center">{{location.name}}</td>
+                      <td class="text-center">{{location.id_city.name}}</td>
+                      <td class="text-center" *ngIf="identity.rol.name != 'Super Administrador'">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-lock"></i></a>
+                        </div>
+                      </td>
+                      <td class="text-center" *ngIf="identity.rol.name == 'Super Administrador'">
+                          <div class="btn-group">
+                              <a [routerLink]="['/editar-localidad', location._id]" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                              <a (click)="onDeleteConfirm(location._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                          </div>
+                          <div class="btn-group btn-group-xs seguro" id="btn-cancel-table" *ngIf="confirmado == location._id">
+                              <a (click)="onDeleteLocation(location._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-danger"><i class="fa fa-times"></i>Eliminar</a>
+                              <a (click)="onCancelLocation()" data-toggle="tooltip" title="Cancelar" class="btn btn-default"><i class="fa fa-cw">Cancelar</i></a>
+                          </div>
+                      </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+      <!-- Example Content -->
+
+      <!-- END Example Content -->
+  </div>
+  <!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

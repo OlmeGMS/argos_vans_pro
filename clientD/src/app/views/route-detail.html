@@ -1,0 +1,133 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador' || identity.rol.name == 'Facturador' || identity.rol.name == 'Cliente Admin'">
+  <!-- Blank Header -->
+  <!-- Blank Header -->
+  <div class="content-header">
+    <div class="header-section">
+      <h1>
+            <i class="fa fa-road"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas rutas al sistema!</small>
+        </h1>
+    </div>
+  </div>
+  <ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar ruta</li>
+    <li><a href="">{{titulo}}</a></li>
+  </ul>
+  <!-- END Blank Header -->
+
+  <!-- Example Block -->
+  <div class="block" >
+    <!-- Example Title -->
+    <div class="block-title">
+      <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset id="content" #content>
+        <legend><i class="fa fa-angle-right"></i> Datos de la ruta</legend>
+        <div *ngIf="alertMessage">
+          <div class="alert alert-info">
+            {{alertMessage}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Titulo</label>
+          <div class="col-md-6">
+            <p class="form-control">{{route.name}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="driverCar">Prestador</label>
+          <div class="col-md-6">
+            <p class="form-control">{{route.driverCar.driver.user.name}} {{route.driverCar.driver.user.surname}} | {{route.driverCar.car.placa}} | {{route.driverCar.car.capacity}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="rate">Tarifa</label>
+          <div class="col-md-6">
+            <p class="form-control">${{route.rate.precio}} | {{route.rate.origen.name}} - {{route.rate.destino.name}}</p>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="route.locationAdd == 'true'">
+          <label class="col-md-4 control-label" for="locationAdd">Localidad adicional</label>
+          <div class="col-md-6">
+            <p class="form-control">Si</p>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="route.locationAdd == 'false'">
+          <label class="col-md-4 control-label" for="locationAdd">Localidad adicional</label>
+          <div class="col-md-6">
+            <p class="form-control">No</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date">Fecha</label>
+          <div class="input-group col-md-6">
+            <p class="form-control">{{route.date}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="template">Planilla</label>
+          <div class="col-md-12" >
+
+
+
+            <!-- Table template Employees-->
+            <table id="example" class="display nowrap sjs-table" cellspacing="0" width="100%" >
+              <thead >
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Cédula</th>
+                  <th>Teléfono</th>
+                  <th>Dirección</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let r of route.template.employee">
+                  <td>{{r.name}}</td>
+                  <td>{{r.surname}}</td>
+                  <td>{{r.dni}}</td>
+                  <td>{{r.phone}}</td>
+                  <td>{{r.address}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Cédula</th>
+                  <th>Teléfono</th>
+                  <th>Dirección</th>
+                </tr>
+              </tfoot>
+            </table>
+            <div class="dt-buttons">
+              <button class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example" type="button" (click)="export(route.template.employee, route.name)"><span>CSV</span></button>
+              <!--<button class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example" type="button" id="button-a" (click)="exportExcel(route.template.employee)"><span>Excel</span></button>-->
+              <button class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button" (click)="downloadPDF()"><span>PDF</span></button>
+              <!--<button class="dt-button buttons-print" tabindex="0" aria-controls="example" type="button"><span>Print</span></button> -->
+            </div>
+            <!-- End Table template Employees-->
+          </div>
+
+        </div>
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-info"><i class="fa fa-arrow-right"></i> Regresar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+  </div>
+  <!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador' && identity.rol.name != 'Facturador' && identity.rol.name != 'Cliente Admin'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

@@ -1,0 +1,145 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Cliente Admin'|| identity.rol.name == 'Super Administrador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevos usuarios !</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar usuario</li>
+    <li><a href="">crear</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>Agregar usuario</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formUser="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del usuario</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="nombre">Nombre<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="name" #name="ngModel" name="name" class="form-control" [(ngModel)]="user.name" placeholder="Digite el nombre " value="" required>
+            <span *ngIf="!name.valid && name.touched"><p style="color:#b61922;">El nombre  es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="surname">Apellido<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="surname" #surname="ngModel" name="surname" class="form-control" [(ngModel)]="user.surname" placeholder="Digite el apellido" value="" required>
+            <span *ngIf="!surname.valid && surname.touched"><p style="color:#b61922;">El apellido es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dni">Documento de identidad<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="dni" #dni="ngModel" name="dni" class="form-control" [(ngModel)]="user.dni" placeholder="Digite el apellido" value="" required>
+            <span *ngIf="!dni.valid && dni.touched"><p style="color:#b61922;">El apellido es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="email" id="email" #email="ngModel" name="email" class="form-control" [(ngModel)]="user.email" placeholder="Digite el email" value="" required>
+            <span *ngIf="!email.valid && email.touched"><p style="color:#b61922;">El email es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Password<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="password" id="password" #password="ngModel" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Digite el password" value="" required>
+            <span *ngIf="!password.valid && password.touched"><p style="color:#b61922;">El password es obligatorio.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="phone">Teléfono<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="number" id="phone" #phone="ngModel" name="phone" class="form-control" [(ngModel)]="user.phone" placeholder="Digite el teléfono" value="" required>
+            <span *ngIf="!phone.valid && phone.touched"><p style="color:#b61922;">El teléfono es obligatorio.</p></span>
+          </div>
+        </div>
+        <!--<div class="form-group">
+          <label class="col-md-4 control-label" for="rol">Rol</label>
+          <div class="col-md-6">
+            <input type="text" id="rol" #rol="ngModel" name="rol" class="form-control" [(ngModel)]="user.rol" placeholder="Digite el codigo" value="5b9680d67bd7b51b083cf193">
+          </div>
+        </div>-->
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="code">Codigo<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" id="code" #code="ngModel" name="code" class="form-control" [(ngModel)]="employee.code" placeholder="Digite el codigo" value="" required>
+              <span *ngIf="!code.valid && code.touched"><p style="color:#b61922;">El apellido es obligatorio.</p></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="cost_center">Centro de Costo</label>
+            <div class="col-md-6">
+              <select  class="form-control" id="cost_center" #cost_center="ngModel" name="cost_center" [(ngModel)]="employee.id_cost_center" placeholder="Seleccione el centro de costo" required>
+                <option value="" selected disabled>Seleccione el rol</option>
+                <option *ngFor="let centro of costCenters" value="{{centro._id}}">{{centro.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="city">Ciudad</label>
+            <div class="col-md-6">
+              <select  class="form-control" id="city" #city="ngModel" name="city" [(ngModel)]="user.city" placeholder="Seleccione la ciudad" (ngModelChange)="getCityLocations($event)" required>
+                <option value="" selected disabled>Seleccione el rol</option>
+                <option *ngFor="let city of cities" value="{{city._id}}" (click)="getCityLocations(city._id)">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="location">Localidad destino</label>
+            <div class="col-md-6">
+              <select  class="form-control" id="location" #destino="ngModel" name="destino" [(ngModel)]="employee.id_localidad" placeholder="Seleccione la localidad" required>
+                <option value="" selected disabled>Seleccione la localidad</option>
+                <option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="address">Dirección<span class="text-danger">*</span></label>
+            <div class="col-md-6">
+              <input type="text" id="address" #address="ngModel" name="code" class="form-control" [(ngModel)]="employee.address" placeholder="Calle 1C bis #18-34" value="" required>
+              <span *ngIf="!address.valid && address.touched"><p style="color:#b61922;">La dirección es obligatoria.</p></span>
+            </div>
+          </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formUser.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Cliente Admin'|| identity.rol.name != 'Super Administrador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

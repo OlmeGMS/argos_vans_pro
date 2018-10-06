@@ -1,0 +1,68 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-building"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevo proveedores de servicio en el sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>proveedores</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formDriverCar="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos del proveedores</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="driver">Conductor</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="driver" #car="ngModel" name="driver" [(ngModel)]="driverCar.driver" placeholder="Seleccione el Conductor" required>
+              <option *ngFor="let driver of drivers; " value="{{driver._id}}">{{driver.user.name}} {{driver.user.surname}}</option>
+              <option value="" selected disabled>Seleccione el conductor</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="car">Vehículo</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="car" #car="ngModel" name="car" [(ngModel)]="driverCar.car" placeholder="Seleccione el Vehículo" required>
+              <option *ngFor="let car of cars" value="{{car._id}}">{{car.placa}}</option>
+              <option value="" selected disabled>Seleccione el vehículo</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formDriverCar.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

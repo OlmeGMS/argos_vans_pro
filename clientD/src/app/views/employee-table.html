@@ -1,0 +1,94 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Cliente Admin'">
+  <!-- Blank Header -->
+  <div class="content-header">
+      <div class="header-section">
+          <h1>
+              <i class="fa fa-user"></i>{{titulo}}<br><small>En esta sección pudes ver los empleados registrados!</small>
+          </h1>
+      </div>
+  </div>
+  <ul class="breadcrumb breadcrumb-top">
+      <li>Home</li>
+      <li>Empleados</li>
+      <li><a href="">{{titulo}}</a></li>
+  </ul>
+  <!-- END Blank Header -->
+
+  <!-- Example Block -->
+  <div class="block">
+      <!-- Example Title -->
+      <div class="block-title">
+          <h2>{{titulo}}</h2> &nbsp;&nbsp;&nbsp;&nbsp;<a [routerLink]="['/crear-empleado']"  id="btn-search-user"><i class="fa fa-plus"></i>Agregar nuevo empleado</a>
+      </div>
+      <!-- END Example Title -->
+        <div class="table-responsive remove-margin-bottom">
+          <table id="table-usuarios-app" class="table table-vcenter table-condensed table-bordered">
+              <thead>
+                  <tr>
+                      <th class="text-center">ID</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Apellido</th>
+                      <th class="text-center">Documento</th>
+                      <th class="text-center">Email</th>
+                      <th class="text-center">Teléfono</th>
+                      <th class="text-center">Dirección</th>
+                      <th class="text-center">Localidad</th>
+                      <th class="text-center">C.C.</th>
+                      <th class="text-center">Codigo</th>
+                      <th class="text-center" *ngIf="identity.rol.name == 'Super Administrador'">Estado</th>
+                      <th class="text-center">Acción</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let employee of employees">
+                      <td class="text-center">{{employee._id}}</td>
+                      <td class="text-center">{{employee.id_user.name}}</td>
+                      <td class="text-center">{{employee.id_user.surname}}</td>
+                      <td class="text-center">{{employee.id_user.dni}}</td>
+                      <td class="text-center">{{employee.id_user.email}}</td>
+                      <td class="text-center">{{employee.id_user.phone}}</td>
+                      <td class="text-center">{{employee.address}}</td>
+                      <td class="text-center">{{employee.id_localidad.name}}</td>
+                      <td class="text-center">{{employee.id_cost_center.name}}</td>
+                      <td class="text-center">{{employee.code}}</td>
+                      <td class="text-center" *ngIf="identity.rol.name == 'Super Administrador'"><span class="label label-info">{{employee.status}}</span></td>
+                      <td class="text-center" *ngIf="identity.rol.name != 'Super Administrador' && identity.rol.name != 'Cliente Admin'">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-lock"></i></a>
+                        </div>
+                      </td>
+                      <td class="text-center" *ngIf="identity.rol.name == 'Super Administrador' && identity.rol.name != 'Cliente Admin'">
+                          <div class="btn-group">
+                              <a [routerLink]="['/editar-empleado', employee._id]" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                              <a (click)="onDeleteConfirm(employee._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                          </div>
+                          <div class="btn-group btn-group-xs seguro" id="btn-cancel-table" *ngIf="confirmado == employee._id">
+                              <a (click)="onDeleteEmployee(employee._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-danger"><i class="fa fa-times"></i>Eliminar</a>
+                              <a (click)="onCancelEmployee()" data-toggle="tooltip" title="Cancelar" class="btn btn-default"><i class="fa fa-cw">Cancelar</i></a>
+                          </div>
+                      </td>
+                      <td class="text-center" *ngIf="identity.rol.name != 'Super Administrador' && identity.rol.name == 'Cliente Admin'">
+                          <div class="btn-group">
+                              <a [routerLink]="['/ver-empleado', employee._id]" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+                              <a (click)="onFalseConfirm(employee._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                          </div>
+                          <div class="btn-group btn-group-xs seguro" id="btn-cancel-table" *ngIf="confirmado == employee._id">
+                              <a (click)="onFalseEmployee(employee._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-danger"><i class="fa fa-times"></i>Eliminar</a>
+                              <a (click)="onCancelEmployee()" data-toggle="tooltip" title="Cancelar" class="btn btn-default"><i class="fa fa-cw">Cancelar</i></a>
+                          </div>
+                      </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+      <!-- Example Content -->
+
+      <!-- END Example Content -->
+  </div>
+  <!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Cliente Admin'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

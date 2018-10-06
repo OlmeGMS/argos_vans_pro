@@ -1,0 +1,94 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity.rol.name == 'Administrador' || identity.rol.name == 'Coordinador'|| identity.rol.name == 'Facturador'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-building"></i>{{titulo}}<br><small>En esta sección pudes agregar nuevas tarifas al sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar tarifa</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formRate="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> Datos de la tarifa</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city_origen">Ciudad origen</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="city_origen" #rol="ngModel" name="city_origen" [(ngModel)]="rate.city_origen" placeholder="Seleccione la ciudad" (ngModelChange)="getRateCity($event)" required>
+              <option value="" selected disabled>Seleccione la ciudad</option>
+              <option *ngFor="let city of cities" value="{{city._id}}" (click)="getRateCity(city._id)">{{city.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="origen">Localidad origen</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="origen" #rol="ngModel" name="origen" [(ngModel)]="rate.origen" placeholder="Seleccione la localidad" required>
+              <option value="" selected disabled>Seleccione la localidad</option>
+              <option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city_destino">Ciudad destino</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="city_destino" #rol="ngModel" name="city_destino" [(ngModel)]="rate.city_destino" placeholder="Seleccione la ciudad" (ngModelChange)="getRateCityDestination($event)" required>
+              <option value="" selected disabled>Seleccione la ciudad</option>
+              <option *ngFor="let city_des of citiesdes" value="{{city_des._id}}" (click)="getRateCityDestination(city_des._id)">{{city_des.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="destino">Localidad destino</label>
+          <div class="col-md-6">
+            <select  class="form-control" id="destino" #destino="ngModel" name="destino" [(ngModel)]="rate.destino" placeholder="Seleccione la localidad" required>
+              <option value="" selected disabled>Seleccione la localidad</option>
+              <option *ngFor="let locationn of locationsdes" value="{{locationn._id}}">{{locationn.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Precio<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="text" id="precio" #precio="ngModel" name="precio" class="form-control" [(ngModel)]="rate.precio" placeholder="Digite el precio" value="" required>
+            <span *ngIf="!precio.valid && precio.touched"><p style="color:#b61922;">El nombre es obligatorio.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formRate.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+</div>
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Administrador' && identity.rol.name != 'Coordinador' && identity.rol.name != 'Facturador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>

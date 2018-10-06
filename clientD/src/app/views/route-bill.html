@@ -1,0 +1,152 @@
+<div class="" *ngIf="identity && identity.rol.name == 'Super Administrador' || identity && identity.rol.name == 'Coordinador' || identity && identity.rol.name == 'Facturador' || identity && identity.rol.name == 'Cliente Admin'">
+<!-- Blank Header -->
+<div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-building"></i>{{titulo}}<br><small>En esta sección pudes agregar arl en el sistema!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Home</li>
+    <li>Gestionar arl</li>
+    <li><a href="">{{titulo}}</a></li>
+</ul>
+<!-- END Blank Header -->
+
+<!-- Example Block -->
+<div class="block">
+    <!-- Example Title -->
+    <div class="block-title">
+        <h2>{{titulo}}</h2>
+    </div>
+    <!-- END Example Title -->
+
+    <!-- Example Content -->
+    <form id="form-validation" #formBill="ngForm" method="post" class="form-horizontal form-bordered" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <legend><i class="fa fa-angle-right"></i> filtro de busqueda</legend>
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+              {{alertMessage}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_start">Fecha inicio<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="date" id="date_start" #date_start="ngModel" name="date_start" class="form-control" [(ngModel)]="route.date_start" placeholder="Digita la fecha de inicio" value="" required>
+            <span *ngIf="!date_start.valid && date_start.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="date_end">Fecha fin<span class="text-danger">*</span></label>
+          <div class="col-md-6">
+            <input type="date" id="date_end" #date_end="ngModel" name="date_end" class="form-control" [(ngModel)]="route.date_end" placeholder="Digita la fecha de final" value="" required>
+            <span *ngIf="!date_end.valid && date_end.touched"><p style="color:#b61922;">La fecha es obligatoria.</p></span>
+          </div>
+        </div>
+
+        <div class="form-group ">
+          <div class="col-md-8 col-md-offset-4">
+            <button href="" type="submit" class="btn btn-sm btn-success" [disabled]="!formBill.form.valid"><i class="fa fa-arrow-right"></i> {{titulo}}</button>
+            <button id="btn-eliminar" type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- END Example Content -->
+    <div class="" *ngIf="routes">
+      <div class="table-responsive remove-margin-bottom" id="content" #content>
+        <table id="table-usuarios-app" class="table table-vcenter table-condensed table-bordered display nowrap sjs-table" cellspacing="0" width="100%" >
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Fecha Prestacion</th>
+              <th>Id Empleado</th>
+              <th>Empleado</th>
+              <th>Dirección origen</th>
+              <th>Localidad Origen</th>
+              <th>Ciudad</th>
+              <th>HH</th>
+              <th>Ceco</th>
+              <th>Centro de Costo</th>
+              <th>Destino</th>
+              <th>Localidad</th>
+              <th>Ruta</th>
+              <th>Tipo servicio</th>
+              <th>Placa</th>
+              <th>Conductor</th>
+              <th>Teléfono</th>
+              <th>Km</th>
+              <th>Nº Pasajeros</th>
+              <th>Costo</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let route of routes">
+            <tr *ngFor="let r of route.template.employee">
+              <td>{{route.template.date_start}}</td>
+              <td>{{route.date}}</td>
+              <td>{{r.dni}}</td>
+              <td>{{r.name}} {{r.surname}}</td>
+              <th>{{r.address}}</th>
+              <td>{{route.rate.origen.name}}</td>
+              <td>{{route.rate.origen.id_city.name}}</td>
+              <td>{{r.hour}}</td>
+              <td>{{route.template.ceco}}</td>
+              <td>{{route.template.cost_center.name}}</td>
+              <td>{{route.rate.destino.name}}</td>
+              <td>{{route.rate.destino.name}}</td>
+              <td>{{route.name}}</td>
+              <td>Puerta a puerta</td>
+              <td>{{route.driverCar.car.placa}}</td>
+              <td>{{route.driverCar.driver.user.name}} {{route.driverCar.driver.user.surname}}</td>
+              <td>{{route.driverCar.driver.user.phone}}</td>
+              <td>{{route.km}}</td>
+              <td>{{route.template.employee.length}}</td>
+              <td>${{route.price}}</td>
+            </tr>
+          </tbody>
+          <tfoot class="table table-vcenter table-condensed table-bordered">
+            <tr>
+              <th>Fecha</th>
+              <th>Fecha Prestacion</th>
+              <th>Id Empleado</th>
+              <th>Empleado</th>
+              <th>Dirección origen</th>
+              <th>Localidad Origen</th>
+              <th>Ciudad</th>
+              <th>HH</th>
+              <th>Ceco</th>
+              <th>Centro de Costo</th>
+              <th>Destino</th>
+              <th>Localidad</th>
+              <th>Ruta</th>
+              <th>Tipo servicio</th>
+              <th>Placa</th>
+              <th>Conductor</th>
+              <th>Teléfono</th>
+              <th>Km</th>
+              <th>Nº Pasajeros</th>
+              <th>Costo</th>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="form-group dt-buttons" >
+          <button class="dt-button buttons-csv buttons-html5" style=" float: left;" tabindex="0" aria-controls="example" type="button" (click)="exportExcel(routes, route.name)"><span>CSV</span></button>
+          <!--<button class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button" (click)="downloadPDF()"><span>PDF</span></button>-->
+        </div>
+      </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- END Example Block -->
+</div>
+<div class="" *ngIf="!identity || identity.rol.name != 'Super Administrador' && identity.rol.name != 'Facturador'">
+  <h2>ERROR: Permisos</h2>
+  <br>
+  <p style=" color: #333;">No tienes acceso a esta parte de la aplicación.</p>
+</div>
