@@ -1,0 +1,20 @@
+{ 
+    "_id" : ObjectId("5b9bee8033ba290bb7af865a"), 
+    "code" : "1209", 
+    "address" : "Carrera 68C #15-28 sur", 
+    "id_user" : ObjectId("5b9beb22defd570ac14f7f07"), 
+    "id_cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "id_localidad" : ObjectId("5b97d5ebef82a6070284f7f8"), 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b9c117133ba290bb7af865f"), 
+    "code" : "1278", 
+    "address" : "Carrera 68 C #13-13", 
+    "id_user" : ObjectId("5b9c117133ba290bb7af865e"), 
+    "id_cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "id_localidad" : ObjectId("5b97dde49a61ea08116c967d"), 
+    "__v" : NumberInt(0), 
+    "status" : true
+}

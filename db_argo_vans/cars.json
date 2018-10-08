@@ -1,0 +1,16 @@
+{ 
+    "_id" : ObjectId("5b9972d669697610b67d6f6b"), 
+    "placa" : "EPB623", 
+    "capacity" : "19", 
+    "address" : "Carrera 19A #18-34", 
+    "status" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ba10b2c8548dd051ed9e055"), 
+    "placa" : "ABC123", 
+    "capacity" : "12", 
+    "address" : "Calle 1C Bis #18-34", 
+    "status" : true, 
+    "__v" : NumberInt(0)
+}

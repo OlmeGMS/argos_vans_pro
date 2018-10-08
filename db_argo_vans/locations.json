@@ -1,0 +1,30 @@
+{ 
+    "_id" : ObjectId("5b97d5b1ef82a6070284f7f6"), 
+    "name" : "Kennedy", 
+    "id_city" : ObjectId("5b96c4673c623267f6d18e0b"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b97d5c1ef82a6070284f7f7"), 
+    "name" : "Usaquen", 
+    "id_city" : ObjectId("5b96c4673c623267f6d18e0b"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b97d5ebef82a6070284f7f8"), 
+    "name" : "Puente aranda", 
+    "id_city" : ObjectId("5b96c4673c623267f6d18e0b"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b97dde49a61ea08116c967d"), 
+    "name" : "Ciudad Bolivar", 
+    "id_city" : ObjectId("5b96c4673c623267f6d18e0b"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5bb3aab0aa87b524252ce0e8"), 
+    "name" : "Bosa", 
+    "id_city" : ObjectId("5b96c4673c623267f6d18e0b"), 
+    "__v" : NumberInt(0)
+}

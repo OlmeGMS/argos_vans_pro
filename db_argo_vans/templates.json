@@ -1,0 +1,286 @@
+{ 
+    "_id" : ObjectId("5ba3d869cab7360a71cf4379"), 
+    "title" : "Kenndy", 
+    "employee" : [
+        {
+            "dni" : "28716472", 
+            "name" : "Olga", 
+            "surname" : "Sanchez", 
+            "phone" : "2623757", 
+            "address" : "Carrera 68C #15-28 sur", 
+            "costCenter" : "Taxisya", 
+            "hour" : "06:00"
+        }, 
+        {
+            "dni" : "1030544919", 
+            "name" : "Olme", 
+            "surname" : "Marin", 
+            "phone" : "3162355084", 
+            "address" : "Carrera 68C #15-28 sur", 
+            "costCenter" : "Taxista", 
+            "hour" : "06:00"
+        }
+    ], 
+    "date_start" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "confirmation_upload" : "null", 
+    "confirmation_download" : "null", 
+    "location_start" : "Kennedy", 
+    "address_end" : "Carrera 19A #159-70", 
+    "location_end" : "Usaquen", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "__v" : NumberInt(0), 
+    "ceco" : "2332", 
+    "address_start" : "Carrera 68C #15-28 sur", 
+    "canLocalidades" : "1"
+}
+{ 
+    "_id" : ObjectId("5ba4e8067a55ab0350878772"), 
+    "title" : "Saquen", 
+    "employee" : [
+        {
+            "dni" : "7777777", 
+            "name" : "Jhon", 
+            "surname" : "Doe", 
+            "phone" : "999999", 
+            "address" : "Carrera 19A #159-70", 
+            "costCenter" : "Taxisya", 
+            "hour" : "20:00"
+        }, 
+        {
+            "dni" : "1111111", 
+            "name" : "Jennifer", 
+            "surname" : "Lopez", 
+            "phone" : "222222", 
+            "address" : "Carrera 19A #159-70", 
+            "costCenter" : "Taxisya", 
+            "hour" : "20:00"
+        }
+    ], 
+    "date_start" : ISODate("2018-09-24T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-09-24T00:00:00.000+0000"), 
+    "confirmation_upload" : "null", 
+    "confirmation_download" : "null", 
+    "address_start" : "Carrera 68C #15-28 sur", 
+    "location_start" : "Kennedy", 
+    "address_end" : "Carrera 19A #159-70", 
+    "location_end" : "Usaquen", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "__v" : NumberInt(0), 
+    "ceco" : "3434", 
+    "canLocalidades" : "1"
+}
+{ 
+    "_id" : ObjectId("5bae57011b5b880ec43af0a2"), 
+    "title" : "Kennedy - Bosa", 
+    "employee" : [
+        {
+            "dni" : "8856432", 
+            "name" : "jessica", 
+            "surname" : "casas", 
+            "phone" : "333337", 
+            "address" : "Carrera 52 #18-60 sur", 
+            "costCenter" : "real", 
+            "hour" : "07:00"
+        }, 
+        {
+            "dni" : "7654321", 
+            "name" : "Mauricio", 
+            "surname" : "Cruz", 
+            "phone" : "333333", 
+            "address" : "Calle 65A sur #78A-25", 
+            "costCenter" : "taxisya", 
+            "hour" : "06:00"
+        }, 
+        {
+            "dni" : "1234567", 
+            "name" : "jhon", 
+            "surname" : "doe", 
+            "phone" : "22222", 
+            "address" : "Calle 65A sur #78A-25 ", 
+            "costCenter" : "taxisya", 
+            "hour" : "06:00"
+        }
+    ], 
+    "date_start" : ISODate("2018-09-28T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-09-28T00:00:00.000+0000"), 
+    "address_start" : "Carrera 68 C #15-28 sur", 
+    "location_start" : "Kennedy", 
+    "address_end" : "Carrera 52 #18-60 sur", 
+    "location_end" : "Puente Aranda", 
+    "ceco" : "123", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "canLocalidades" : "2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5bb3703f197fb61cde0cfa63"), 
+    "title" : "Usaquen - Bosa", 
+    "employee" : [
+        {
+            "dni" : "3719375", 
+            "name" : "Jorge", 
+            "surname" : "Ramirez", 
+            "phone" : "6298888", 
+            "address" : "Calle 65A sur #78A-25", 
+            "costCenter" : "Taxisya", 
+            "hour" : "06:00"
+        }, 
+        {
+            "dni" : "7654321", 
+            "name" : "Juan", 
+            "surname" : "Lopez", 
+            "phone" : "777777", 
+            "address" : "Calle 65A sur #78A-25", 
+            "costCenter" : "Taxisya", 
+            "hour" : "06:00"
+        }, 
+        {
+            "dni" : "1234567", 
+            "name" : "Alejandro ", 
+            "surname" : "Ramirez", 
+            "phone" : "222222", 
+            "address" : "Calle 65A sur #78A-25 ", 
+            "costCenter" : "Taxisya", 
+            "hour" : "06:00"
+        }
+    ], 
+    "date_start" : ISODate("2018-10-02T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-10-31T00:00:00.000+0000"), 
+    "address_start" : "Carrera 19a #159-70", 
+    "location_start" : "Usaquen", 
+    "address_end" : "Calle 65A sur #78A-25", 
+    "location_end" : "Bosa", 
+    "ceco" : "wsx", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "canLocalidades" : "0", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5bb4eb88372c340386a9294c"), 
+    "title" : "Kenney - Usaquen", 
+    "employee" : [
+        {
+            "dni" : "22", 
+            "name" : "jennifer ", 
+            "surname" : "lopez", 
+            "phone" : "22", 
+            "address" : "Carrera 19A #159-70", 
+            "costCenter" : "22", 
+            "hour" : "22", 
+            "localidad" : "Usaquen"
+        }, 
+        {
+            "dni" : "111", 
+            "name" : "olme", 
+            "surname" : "Marin", 
+            "phone" : "222", 
+            "address" : "Carrera 19A #159-70", 
+            "costCenter" : "222", 
+            "hour" : "22", 
+            "localidad" : "Usaquen"
+        }
+    ], 
+    "date_start" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "address_start" : "Carrera 68C #15-28 sur", 
+    "location_start" : "Kennedy", 
+    "address_end" : "Carrera 19A #159-70", 
+    "location_end" : "Usaquen", 
+    "ceco" : "ta", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "canLocalidades" : "0", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5bb4ec65372c340386a9294d"), 
+    "title" : "Bosa - Puente Aranda", 
+    "employee" : [
+        {
+            "dni" : "44", 
+            "name" : "olme", 
+            "surname" : "marin", 
+            "phone" : "44", 
+            "address" : "Carrera 19A #159-70", 
+            "costCenter" : "22", 
+            "hour" : "22", 
+            "localidad" : "Usaquen"
+        }, 
+        {
+            "dni" : "33", 
+            "name" : "pedro ", 
+            "surname" : "perez", 
+            "phone" : "33", 
+            "address" : "Carrera 52 #18-60 sur", 
+            "costCenter" : "22", 
+            "hour" : "22", 
+            "localidad" : "Usaquen"
+        }, 
+        {
+            "dni" : "11", 
+            "name" : "jesica", 
+            "surname" : "casas", 
+            "phone" : "222", 
+            "address" : "Carrera 52 #18-60 sur", 
+            "costCenter" : "22", 
+            "hour" : "22", 
+            "localidad" : "Usaquen"
+        }
+    ], 
+    "date_start" : ISODate("2018-10-03T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-10-03T00:00:00.000+0000"), 
+    "address_start" : "Calle 65A sur #78A-25 ", 
+    "location_start" : "Bosa", 
+    "address_end" : "Carrera 19A #159-70", 
+    "location_end" : "Usaquen", 
+    "ceco" : "wsx", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "canLocalidades" : "2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5bb7cafbe688f036700514a2"), 
+    "title" : "3", 
+    "employee" : [
+        {
+            "dni" : "3", 
+            "name" : "3", 
+            "surname" : "3", 
+            "phone" : "3", 
+            "address" : "Carrera 68C #15-28 sur", 
+            "costCenter" : "3", 
+            "hour" : "3", 
+            "localidad" : "Kennedy"
+        }, 
+        {
+            "dni" : "2", 
+            "name" : "2", 
+            "surname" : "2", 
+            "phone" : "2", 
+            "address" : "Carrera 68C #15-28 sur", 
+            "costCenter" : "2", 
+            "hour" : "2", 
+            "localidad" : "Kennedy"
+        }, 
+        {
+            "dni" : "1", 
+            "name" : "1", 
+            "surname" : "1", 
+            "phone" : "1", 
+            "address" : "Carrera 68C #15-28 sur", 
+            "costCenter" : "1", 
+            "hour" : "1", 
+            "localidad" : "Kennedy"
+        }
+    ], 
+    "date_start" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "date_end" : ISODate("2018-09-22T00:00:00.000+0000"), 
+    "address_start" : "Carrera 19A #159-70", 
+    "location_start" : "Usaquen", 
+    "address_end" : "Carrera 68C #15-28 sur", 
+    "location_end" : "Kennedy", 
+    "ceco" : "2", 
+    "cost_center" : ObjectId("5b990c0355fdc4033b4d0c03"), 
+    "canLocalidades" : "0", 
+    "__v" : NumberInt(0)
+}

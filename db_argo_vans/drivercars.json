@@ -1,0 +1,7 @@
+{ 
+    "_id" : ObjectId("5ba11c388548dd051ed9e056"), 
+    "driver" : ObjectId("5ba007e964c862247f42c196"), 
+    "car" : ObjectId("5b9972d669697610b67d6f6b"), 
+    "status" : true, 
+    "__v" : NumberInt(0)
+}

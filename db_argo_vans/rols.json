@@ -1,0 +1,42 @@
+{ 
+    "_id" : ObjectId("5b93e53e54cf2f04af4ed4d9"), 
+    "name" : "Super Administrador", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b93e64354cf2f04af4ed4da"), 
+    "name" : "Administrador", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b93fdadbd8dff0875f0bf2f"), 
+    "name" : "Coordinador", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b96808e7bd7b51b083cf191"), 
+    "name" : "Facturador", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b9680c67bd7b51b083cf192"), 
+    "name" : "Conductor", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b9680d67bd7b51b083cf193"), 
+    "name" : "Empleado", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
+{ 
+    "_id" : ObjectId("5b9680f77bd7b51b083cf194"), 
+    "name" : "Cliente Admin", 
+    "__v" : NumberInt(0), 
+    "status" : true
+}
