@@ -45,7 +45,7 @@
                       </td>
                       <td class="text-center" *ngIf="identity.rol.name == 'Super Administrador'">
                           <div class="btn-group">
-                              <a [routerLink]="['/editar-usuario', user._id]" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                              <!--<a [routerLink]="['/editar-usuario', user._id]" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>-->
                               <a (click)="onDeleteConfirm(user._id)" data-toggle="tooltip" title="Eliminar" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                           </div>
                           <div class="btn-group btn-group-xs seguro" id="btn-cancel-table" *ngIf="confirmado == user._id">
