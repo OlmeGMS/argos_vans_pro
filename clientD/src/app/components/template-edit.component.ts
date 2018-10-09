@@ -258,7 +258,14 @@ source: LocalDataSource;
           this.servi = response.data[0];
           console.log(this.servi);
           this.alertMessage = '¡Dirección ubicada!';
-          this.template.location_start = this.servi.localidad;
+          if (this.servi.localidad == "") {
+              this.template.location_start = this.ciudad;
+          }else{
+
+              this.template.location_start = this.servi.localidad;
+          }
+
+            console.log(this.template.location_start);
         }
       },
       error => {
@@ -297,7 +304,14 @@ source: LocalDataSource;
         }else{
           this.servi = response.data[0];
           console.log(this.servi);
-          this.template.location_end = this.servi.localidad;
+          if (this.servi.localidad == "") {
+              this.template.location_end = this.ciudad;
+          }else{
+
+              this.template.location_end = this.servi.localidad;
+          }
+
+          console.log(this.template.location_end);
         }
       },
       error => {

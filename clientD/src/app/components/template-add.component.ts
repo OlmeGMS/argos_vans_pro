@@ -215,7 +215,15 @@ export class TemplateAddComponent implements OnInit {
           this.servi = response.data[0];
           console.log(this.servi);
           this.alertMessage = '¡Dirección ubicada!';
-          this.template.location_start = this.servi.localidad;
+          if (this.servi.localidad == "") {
+              this.template.location_start = this.ciudad;
+          }else{
+
+              this.template.location_start = this.servi.localidad;
+          }
+
+            console.log(this.template.location_start);
+
         }
       },
       error => {
@@ -256,7 +264,15 @@ export class TemplateAddComponent implements OnInit {
           this.servi = response.data[0];
           console.log(this.servi);
           this.alertMessage = '¡Dirección ubicada!';
-          this.template.location_end = this.servi.localidad;
+          console.log(this.servi.localidad);
+          if (this.servi.localidad == "") {
+              this.template.location_end = this.ciudad;
+          }else{
+
+              this.template.location_end = this.servi.localidad;
+          }
+
+          console.log(this.template.location_end);
         }
       },
       error => {
@@ -374,7 +390,12 @@ export class TemplateAddComponent implements OnInit {
             } else {
               this.servi = response.data[0];
               console.log(this.servi);
-              this.template.location_start = this.servi.localidad;
+              if (this.servi.localidad != null || this.servi.localidad != "") {
+                  this.template.location_start = this.servi.localidad;
+              }else{
+                this.template.location_start = this.ciudadMira;
+              }
+
               for (var row in this.viajeros) {
                 bebe = this.viajeros[row];
                 console.log(bebe);
@@ -457,6 +478,8 @@ export class TemplateAddComponent implements OnInit {
                 );
 
 
+
+
               }, 2000);
 
 
@@ -494,7 +517,13 @@ export class TemplateAddComponent implements OnInit {
             } else {
               this.servi = response.data[0];
               console.log(this.servi);
-              this.template.location_end = this.servi.localidad;
+              console.log(this.servi.localidad);
+              if (this.servi.localidad != null || this.servi.localidad != "") {
+                  this.template.location_end = this.servi.localidad;
+              }else{
+                this.template.location_end = this.ciudadMira;
+              }
+              //this.template.location_end = this.servi.localidad;
 
                 //quite el for
 
